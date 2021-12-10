@@ -1,7 +1,7 @@
 task:
   freebsd_instance:
-    cpu: 4
-    memory: 16G
+    cpu: 2
+    memory: 8G
     matrix:
       # image: freebsd-12-2-release-amd64
       - image: freebsd-13-0-release-amd64
