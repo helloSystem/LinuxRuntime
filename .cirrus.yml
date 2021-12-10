@@ -31,6 +31,9 @@ task:
     - kldload tmpfs.ko || true
     - kldload nullfs.ko || true
     - kldload geom_uzip.ko || true
+    - kldload linux64 || true
+    - kldload fdescfs || true
+    - kldload linprocfs || true
     - pkg install -y pkg
     
   Build_script:
