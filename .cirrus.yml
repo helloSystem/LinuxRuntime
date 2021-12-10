@@ -10,9 +10,6 @@ task:
     USER: 1000
     CIRRUS_CLONE_DEPTH: 1
     GITHUB_TOKEN: ENCRYPTED[!0f42e3f70fd51cdeddfe7e98160982fc9efe7e8a26869b725fcd5de05d067a7100b994cf52f0f1b470a983148e0b8ec2!]
-    APPLICATION_NAME: LibreOffice
-    PACKAGE_NAMES: libreoffice libreoffice-i18n
-    EXECUTABLE_NAME: libreoffice
     
   auto_cancellation: false
   stateful: false
@@ -57,6 +54,6 @@ task:
     
   Upload_script:
     - export VER=$(uname -r | cut -d "-" -f 1) # No way to pass on from Build_script to Upload_script?
-    - ls -lh "${CIRRUS_WORKING_DIR}"/work/artifacts/
-    - export RELEASE_NAME=$(echo "$APPLICATION_NAME" | sed -e 's| |_|g') # GitHub Release names cannot contain blanks
-    - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -b "This is an experimental __UNTESTED__ build for developers." -c "${CIRRUS_CHANGE_IN_REPO}" "$RELEASE_NAME" "${CIRRUS_WORKING_DIR}"/work/artifacts ; esac
+    - ls -lh "${CIRRUS_WORKING_DIR}"/artifacts/
+    - export RELEASE_NAME="bullseye"
+    - case "$CIRRUS_BRANCH" in *pull/*) echo skipping since PR ;; * ) wget -c -q https://github.com/tcnksm/ghr/files/5247714/ghr.zip ; unzip ghr.zip ; ./ghr -prerelease -delete -t "${GITHUB_TOKEN}" -u "${CIRRUS_REPO_OWNER}" -r "${CIRRUS_REPO_NAME}" -b "This is an experimental __UNTESTED__ build for developers." -c "${CIRRUS_CHANGE_IN_REPO}" "$RELEASE_NAME" "${CIRRUS_WORKING_DIR}"/artifacts ; esac
