@@ -37,7 +37,7 @@ task:
     - mkdir -p /compat
     - mount -t tmpfs tmpfs /compat
     - mount -t tmpfs tmpfs /tmp
-    - sh -ex ../prepare-debian-userland.sh chroot create
+    - sh -ex ./prepare-debian-userland.sh chroot create
     - makefs -o 'label=debian' /tmp/debian.ufs /compat/debian
     - mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
     - readlink -f /tmp/debian.img
