@@ -39,9 +39,9 @@ task:
     - mount -t tmpfs tmpfs /tmp
     - sh -ex ../prepare-debian-userland.sh chroot create
     - makefs -o 'label=debian' /tmp/debian.ufs /compat/debian
-  	- mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
-  	- readlink -f /tmp/debian.img
-  	- ls -lh /tmp/debian.img
+    - mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
+    - readlink -f /tmp/debian.img
+    - ls -lh /tmp/debian.img
     - mkdir -p artifacts ; mv /tmp/debian.img artifacts/
     
   Upload_script:
