@@ -216,6 +216,7 @@ install_chroot_base()
 	set_timezone
 	debian_start
 	install_apt_packages
+	rm "${chroot_path}"/etc/resolv.conf # Will this be sufficient?
 	# symlink_icons
 	# symlink_themes
 }
@@ -248,7 +249,7 @@ cleanup()
 
 image()
 {
-    makefs -o 'label=debian' /tmp/debian.ufs "${chroot_path}"
+	makefs -o 'label=debian' /tmp/debian.ufs "${chroot_path}"
 	mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
 	readlink -f /tmp/debian.img
 	ls -lh /tmp/debian.img
