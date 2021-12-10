@@ -36,6 +36,7 @@ task:
   Build_script:
     - mkdir -p /compat
     - mount -t tmpfs tmpfs /compat
+    - mkdir -p /compat/debian
     - mount -t tmpfs tmpfs /tmp
     - sh -ex ./prepare-debian-userland.sh chroot create
     - makefs -o 'label=debian' /tmp/debian.ufs /compat/debian
