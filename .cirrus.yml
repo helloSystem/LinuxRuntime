@@ -43,6 +43,12 @@ task:
     - mount -t tmpfs tmpfs /tmp
     - echo "Europe/Berlin" > /var/db/zoneinfo # FIXME: Find a way not to hardcode this
     - sh -ex ./prepare-debian-userland.sh chroot create
+    - umount -f /compat/*/tmp || true
+    - umount -f /compat/*/dev/shm || true
+    - umount -f /compat/*/dev/fd || true
+    - umount -f /compat/*/dev || true
+    - umount -f /compat/*/sys || true
+    - umount -f /compat/*/proc || true
     - makefs -o 'label=debian' /tmp/debian.ufs /compat/debian
     - mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
     - readlink -f /tmp/debian.img
