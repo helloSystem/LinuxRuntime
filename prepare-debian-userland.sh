@@ -191,9 +191,6 @@ set_timezone()
 	if [ ! -d "${chroot_path}/etc/localtime" ]; then
 		mkdir -p "${chroot_path}/etc/localtime"
 	fi
-	cp /var/db/zoneinfo "${chroot_path}/etc/timezone" \
-		${chroot_path}/etc/localtime
-	rm -f ${chroot_path}/etc/localtime
 	ln -s "/usr/share/zoneinfo/$(cat /var/db/zoneinfo)" \
 		${chroot_path}/etc/localtime
 	chroot ${chroot_path} /bin/bash -c \
