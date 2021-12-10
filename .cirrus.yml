@@ -34,12 +34,15 @@ task:
     - pkg install -y pkg
     
   Build_script:
-    - mkdir -p work
-    - mount -t tmpfs tmpfs ./work
-    - cd work
-    - mkdir -p artifacts/
-    - sh -ex ../prepare-debian-userland.sh
-    - mkdir -p artifacts ; mv "${APPLICATION_NAME}"*img artifacts/
+    - mkdir -p /compat
+    - mount -t tmpfs tmpfs /compat
+    - mount -t tmpfs tmpfs /tmp
+    - sh -ex ../prepare-debian-userland.sh chroot create
+    - makefs -o 'label=debian' /tmp/debian.ufs /compat/debian
+  	- mkuzip -A zstd -C 15 -d -s 262144 -o /tmp/debian.img /tmp/debian.ufs
+  	- readlink -f /tmp/debian.img
+  	- ls -lh /tmp/debian.img
+    - mkdir -p artifacts ; mv /tmp/debian.img artifacts/
     
   Upload_script:
     - export VER=$(uname -r | cut -d "-" -f 1) # No way to pass on from Build_script to Upload_script?
