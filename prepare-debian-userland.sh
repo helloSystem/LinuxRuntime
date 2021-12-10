@@ -17,7 +17,7 @@ appsdir="${prefix}/share/applications"
 chroot_bindir="${chroot_path}/bin"
 
 apt_packages="gnupg pulseaudio libnss3 libgl1 curl unzip wget binutils libglib2.0-dev libgbm-dev libgtk-3-0 libgtk2.0-0 libxss1"
-pkg_list="debootstrap pulseaudio"
+pkg_list="debootstrap" # pulseaudio would beed to be installed on the target machine, not on the build machine
 
 chroot_mount_points="
 /proc
