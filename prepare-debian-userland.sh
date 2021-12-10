@@ -187,6 +187,7 @@ symlink_themes()
 set_timezone()
 {
 	printf "0.0 0 0.0\n0\nUTC\n" > ${chroot_path}/etc/adjtime
+	rm -rf "${chroot_path}/etc/localtime"
 	if [ ! -d "${chroot_path}/etc/localtime" ]; then
 		mkdir -p "${chroot_path}/etc/localtime"
 	fi
