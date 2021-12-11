@@ -1,6 +1,6 @@
 # LinuxRuntime
 
-Runtime for use with `compat.linux.emul_path`
+Debian userland contained within a compressed read-only disk image for use with `compat.linux.emul_path`.
 
 ## License
 
