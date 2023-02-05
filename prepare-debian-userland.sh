@@ -20,8 +20,10 @@ apt_packages="gnupg pulseaudio libnss3 libgl1 curl unzip wget binutils libglib2.
 libxss1 libsecret-1-0 libxkbfile1 libxcb-composite0 libxcb-cursor0 libxcb-damage0 libxcb-doc libxcb-dpms0 libxcb-ewmh2 \
 libxcb-icccm4 libxcb-image0 libxcb-imdkit1 libxcb-keysyms1 libxcb-record0 libxcb-render-util0 libxcb-res0 libxcb-screensaver0 \
 libxcb-shape0 libxcb-util1 libxcb-xf86dri0 libxcb-xinerama0 libxcb-xinput0 libxcb-xkb1 libxcb-xrm0 libxcb-xtest0 libxcb-xv0 \
-libxcb-xvmc0 libfuse2 libegl-* locales mesa-utils libgl1-mesa-glx"
-# libsecret-1-0 libxkbfile1 needed by e.g., Arduino IDE 2.0
+libxcb-xvmc0 libfuse2 libegl-* locales mesa-utils libgl1-mesa-glx libpangoxft vdpau-va-driver vdpau-driver-all libgl1-mesa-dri vulkan-tools"
+# libsecret-1-0 libxkbfile1 needed by, e.g., Arduino IDE 2.0
+# libpangoxft needed by, e.g., PrusaSlicer
+# vdpau-va-driver vdpau-driver-all libgl1-mesa-dri vulkan-tools in the hope to improve Linuxulator 3D acceleration capabilities
 pkg_list="debootstrap" # pulseaudio would beed to be installed on the target machine, not on the build machine
 
 chroot_mount_points="
