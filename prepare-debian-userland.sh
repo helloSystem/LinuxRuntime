@@ -213,6 +213,7 @@ install_chroot_base()
 	debian_start || bail "Failed to start debian service"
 	install_steam_utils
 	install_packages
+	chmod 0755 /usr/local/sbin/debootstrap
 	/usr/local/sbin/debootstrap --arch=amd64 --no-check-gpg ${debian_version} ${chroot_path} || \
 		bail "debootstrap failed"
 	echo "APT::Cache-Start 251658240;" > \
